@@ -4,6 +4,7 @@ import com.example.demo.Classes.KeyHandler;
 import com.example.demo.Classes.Player;
 import com.example.demo.Classes.Background;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.DialogPane;
 import javafx.scene.layout.Pane;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.GraphicsContext;
@@ -19,6 +20,7 @@ public class GameController1 implements Initializable, Runnable{
     public GraphicsContext gc;
 
     public Pane pane;
+    public DialogPane dialogPane;
     Thread gThread;
 
     KeyHandler keyH;

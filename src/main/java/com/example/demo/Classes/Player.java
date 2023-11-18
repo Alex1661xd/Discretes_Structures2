@@ -16,7 +16,7 @@ public class Player extends Entity {
     private int characterNum = 0;
     private int characterCounter = 0;
     private int tamañoP=48;
-    private int animationSpeed1 = 10;
+    private int animationSpeed1 = 5;
     private int animationSpeed2=0;
 
 
@@ -27,9 +27,9 @@ public class Player extends Entity {
         setDefaultValues();
         initializeImagesList();
         coliArea=new Rectangle();
-        coliArea.setX(22);
-        coliArea.setY(35);
-        coliArea.setWidth(32);
+        coliArea.setX(19);
+        coliArea.setY(32);
+        coliArea.setWidth(30);
         coliArea.setHeight(32);
     }
 
@@ -43,7 +43,7 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = 340;
+        worldX = 115;
         worldY = 220;
         speed = 4;
         direction = "down";
@@ -85,7 +85,15 @@ public class Player extends Entity {
                     break;
             }
         }
-
+        animationSpeed2++;
+        if(animationSpeed2>=3){
+            characterCounter++;
+            if (characterCounter > animationSpeed1) {
+                characterNum = (characterNum + 1) % imagesList.size();
+                characterCounter = 0;
+            }
+            animationSpeed2=0;
+        }
 
     }
 
@@ -95,7 +103,7 @@ public class Player extends Entity {
             g.drawImage(imagesList.get(directionIndex(direction)).get(0), worldX, worldY, tamañoP, tamañoP);
         } else {
             // Si alguna tecla está presionada, realizar la animación normal
-            Image image = imagesList.get(directionIndex(direction)).get(0);
+            Image image = imagesList.get(directionIndex(direction)).get(characterCounter);
             g.drawImage(image, worldX, worldY, tamañoP, tamañoP);
         }
     }

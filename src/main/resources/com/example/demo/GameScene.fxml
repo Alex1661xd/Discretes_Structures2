@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="pane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.GameController1">
+<Pane fx:id="pane" prefHeight="631.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.GameController1">
 
     <Canvas fx:id="canvas" height="576" width="768" />
+   <DialogPane fx:id="dialogPane" layoutY="576.0" prefHeight="53.0" prefWidth="768.0" />
 </Pane>
