@@ -1,26 +1,19 @@
 package com.example.demo.ClasesGrafos;
 
-public class Edge {
-    private int source;
-    private int destination;
-    private int weight;
+public class Edge<T> {
+    private T destino;
+    private int peso;
 
-    public Edge(int source, int destination, int weight) {
-        this.source = source;
-        this.destination = destination;
-        this.weight = weight;
+    public Edge(T destino, int peso) {
+        this.destino = destino;
+        this.peso = peso;
     }
 
-    public int getSource() {
-        return source;
+    public T getDestino() {
+        return destino;
     }
 
-    public int getDestination() {
-        return destination;
-    }
-
-    public int getWeight() {
-        return weight;
+    public int getPeso() {
+        return peso;
     }
 }
-

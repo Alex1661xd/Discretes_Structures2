@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Prim {
 
-    public static Set<Edge> prim(Graph graph) {
+    public static Set<Edge> prim(Graph1 graph) {
         Set<Integer> visited = new HashSet<>();
         Set<Edge> minimumSpanningTree = new HashSet<>();
         PriorityQueue<Edge> minHeap = new PriorityQueue<>(Comparator.comparingInt(Edge::getWeight));

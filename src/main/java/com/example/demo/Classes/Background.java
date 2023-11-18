@@ -14,16 +14,21 @@ public class Background {
     GameController1 gp;
     ArrayList<BackgroundEn> tile;
     public double[][] mapBackNum;
+    ArrayList<String> combinaciones;
     DataReader lector;
 
     public Background(GameController1 gp) {
         this.gp = gp;
         tile= new ArrayList<>();
         lector=new DataReader();
+        combinaciones = new ArrayList<>();
+        combinacionesList();
         mapBackNum= new double[16][12];
         getResources();
         loadMap();
     }
+
+
 
     public void getResources(){
         ArrayList<Image>iconosSen= lector.readImageBackground(5);
@@ -83,6 +88,14 @@ public class Background {
 
         while (col < 16 && row < 12) {
             double num = mapBackNum[col][row];
+            if(num==0||num==10){
+                tile.get((int)num).worldX=x;
+                tile.get((int)num).worldY=y;
+                if(!combinaciones.isEmpty()){
+                    tile.get((int)num).name=combinaciones.get(0);
+                    combinaciones.remove(0);
+                }
+            }
             g.drawImage(tile.get((int) num).background, x, y, 48, 48);
             col++;
             x += 48;
@@ -95,4 +108,28 @@ public class Background {
         }
     }
 
+    public void combinacionesList(){
+        for (int i = 1; i <= 50; i++) {
+            String combinacion = obtenerCombinacion(i);
+            combinaciones.add(combinacion);
+        }
+    }
+
+    private static String obtenerCombinacion(int numero) {
+        char primeraLetra = (char) ('A' + (numero - 1) % 26);
+        char ultimaLetra = (char) ('Z' - (numero - 1) % 26);
+        return String.valueOf(primeraLetra) + String.valueOf(ultimaLetra);
+    }
+    public ArrayList<String> getCombinaciones() {
+        return combinaciones;
+    }
+
+    public BackgroundEn searchTile(String name){
+        for (int i = 0; i < tile.size(); i++) {
+            if(tile.get(i).name.equals(name)){
+                return tile.get(i);
+            }
+        }
+        return null;
+    }
 }

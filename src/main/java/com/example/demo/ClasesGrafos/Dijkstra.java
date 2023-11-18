@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Dijkstra {
 
-    public static Map<Integer, Integer> dijkstra(Graph graph, int start) {
+    public static Map<Integer, Integer> dijkstra(Graph1 graph, int start) {
         Map<Integer, Integer> distances = new HashMap<>();
         PriorityQueue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(distances::get));
 
