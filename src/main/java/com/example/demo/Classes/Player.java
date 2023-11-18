@@ -16,7 +16,7 @@ public class Player extends Entity {
     private int characterNum = 0;
     private int characterCounter = 0;
     private int tamañoP=48;
-    private int animationSpeed1 = 5;
+    private int animationSpeed1 = 8;
     private int animationSpeed2=0;
 
 
@@ -36,10 +36,7 @@ public class Player extends Entity {
     private void initializeImagesList() {
         imagesList = new ArrayList<>();
         imagesList.add(lector.readImageCP(1));  // Images for "right"
-        imagesList.add(lector.readImageCP(2));  // Images for "left"
-        imagesList.add(lector.readImageCP(3));  // Images for "kick"
-        imagesList.add(lector.readImageCP(5));  // Images for "hurt"
-        imagesList.add(lector.readImageCP(6)); // Images for "died"
+        imagesList.add(lector.readImageCP(2));  // Images for "left"/
     }
 
     public void setDefaultValues() {
@@ -94,7 +91,6 @@ public class Player extends Entity {
             }
             animationSpeed2=0;
         }
-
     }
 
     public void draw(GraphicsContext g) {

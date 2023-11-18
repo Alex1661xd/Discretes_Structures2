@@ -1,8 +1,5 @@
 package com.example.demo.controllers;
-import com.example.demo.Classes.CollisionChecker;
-import com.example.demo.Classes.KeyHandler;
-import com.example.demo.Classes.Player;
-import com.example.demo.Classes.Background;
+import com.example.demo.Classes.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.DialogPane;
 import javafx.scene.layout.Pane;
@@ -28,8 +25,8 @@ public class GameController1 implements Initializable, Runnable{
     Player player;
 
     public Background backGround;
-
-
+    public setObject setObject;
+    public SuperObject[] object;
     public CollisionChecker collisionChecker;
     int FPS=60;
 
@@ -46,6 +43,9 @@ public class GameController1 implements Initializable, Runnable{
         canvas.setFocusTraversable(true);
         pane.setFocusTraversable(true);
         backGround= new Background(this);
+        object=new SuperObject[9];
+        setObject=new setObject(this);
+        setObjects();
         collisionChecker=new CollisionChecker(this);
         player=new Player(this,keyH);
         startGameThread();
@@ -53,6 +53,10 @@ public class GameController1 implements Initializable, Runnable{
     public void startGameThread(){
         gThread = new Thread(this);
         gThread.start();
+    }
+
+    public void setObjects(){
+        setObject.setOb();
     }
 
     @Override
@@ -91,6 +95,11 @@ public class GameController1 implements Initializable, Runnable{
     public void paint(){
         GraphicsContext gc= canvas.getGraphicsContext2D();
         backGround.paint(gc);
+        for (int i = 0; i < object.length; i++) {
+            if(object[i]!=null){
+                object[i].drawObjects(gc,this);
+            }
+        }
         player.draw(gc);
     }
 
