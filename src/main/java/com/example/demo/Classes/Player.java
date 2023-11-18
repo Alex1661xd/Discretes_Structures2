@@ -15,7 +15,7 @@ public class Player extends Entity {
     private List<List<Image>> imagesList;
     private int characterNum = 0;
     private int characterCounter = 0;
-    private int tamañoP=85;
+    private int tamañoP=48;
     private int animationSpeed1 = 10;
     private int animationSpeed2=0;
 
@@ -85,15 +85,7 @@ public class Player extends Entity {
                     break;
             }
         }
-        animationSpeed2++;
-        if(animationSpeed2>=3){
-            characterCounter++;
-            if (characterCounter > animationSpeed1) {
-                characterNum = (characterNum + 1) % imagesList.size();
-                characterCounter = 0;
-            }
-            animationSpeed2=0;
-        }
+
 
     }
 
@@ -103,7 +95,7 @@ public class Player extends Entity {
             g.drawImage(imagesList.get(directionIndex(direction)).get(0), worldX, worldY, tamañoP, tamañoP);
         } else {
             // Si alguna tecla está presionada, realizar la animación normal
-            Image image = imagesList.get(directionIndex(direction)).get(characterCounter);
+            Image image = imagesList.get(directionIndex(direction)).get(0);
             g.drawImage(image, worldX, worldY, tamañoP, tamañoP);
         }
     }

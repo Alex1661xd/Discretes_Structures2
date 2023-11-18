@@ -30,7 +30,7 @@ public class Background {
         for (int i = 0; i < iconosSen.size(); i++) {
             tile.add(new BackgroundEn());
             tile.get(i).background=iconosSen.get(i);
-            if(i>2){
+            if(i==3||i==5){
                 tile.get(i).collision=true;
             }
         }
