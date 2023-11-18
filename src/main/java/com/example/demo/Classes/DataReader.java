@@ -101,4 +101,21 @@ public class DataReader {
 
         return imageList;
     }
+
+    public Image imageFirstWindow(){
+        iconos=new File(dataFolder + "/iconos");
+        File folder=iconos;
+        File[] pngFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".jpg"));
+        ArrayList<Image> imageList = new ArrayList<>();
+
+        if (pngFiles != null) {
+            for (File pngFile : pngFiles) {
+                Image image = new Image(pngFile.toURI().toString());
+                imageList.add(image);
+            }
+        }
+
+        return imageList.get(0);
+    }
+
 }
