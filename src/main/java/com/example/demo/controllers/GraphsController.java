@@ -101,42 +101,15 @@ public class GraphsController {
     public String showConextions(){
         int typeGraph=getTypeGraph();
         if(typeGraph==1){
-            showConnectionsGraph1BFS("hj");
+            grafo1.mostrarConexiones("agsf");
         }else if(typeGraph==2){
-            addVertexGraph2();
+
         }
         return "h";
     }
 
     public void showConnectionsGraph1BFS(String nameVertex) {
-        // Buscar el vértice con BFS
-        Vertex<String> vertexToFind = null;
-        for (Object objVertice : grafo1.listaAdyacencia.keySet()) {
-            Vertex<String> vertice = (Vertex<String>) objVertice;
-            if (vertice.getName().equals(nameVertex)) {
-                vertexToFind = vertice;
-                break;
-            }
-        }
 
-        if (vertexToFind == null) {
-            System.out.println("Vértice con nombre " + nameVertex + " no encontrado en el grafo.");
-            return;
-        }
-
-        // Realizar BFS desde el vértice encontrado
-        List<Vertex<String>> bfsResult = grafo1.bfsLista(vertexToFind);
-
-        // Mostrar conexiones
-        System.out.print("Conexiones de " + vertexToFind.getName() + ": ");
-        for (Vertex<String> resultado : bfsResult) {
-            List<Edge<String>> aristas = (List<Edge<String>>) grafo1.listaAdyacencia.getOrDefault(resultado, Collections.emptyList());
-            for (Edge<String> arista : aristas) {
-                System.out.print("(" + ((Vertex)arista.getDestino().getName())+ ", Peso: " + arista.getPeso() + ") ");
-            }
-        }
-
-        System.out.println();
     }
 
     public void combinacionesList(){

@@ -2,6 +2,7 @@ module com.example.demo {
     requires javafx.controls;
     requires javafx.fxml;
     requires junit;
+    requires org.junit.jupiter.api;
 
 
     opens com.example.demo to javafx.fxml;

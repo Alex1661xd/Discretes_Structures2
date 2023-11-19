@@ -7,8 +7,8 @@ public class Graph1<T> {
     //Grafo con Lista de adyacencia y Dijkstra
     public Map<Vertex<T>, List<Edge<T>>> listaAdyacencia = new HashMap<>();
     public void agregarAristaLista(Vertex<T> origen, Vertex<T> destino, int peso) {
-        listaAdyacencia.computeIfAbsent(origen, k -> new ArrayList<>()).add(new Edge<>(destino.getName(), peso));
-        listaAdyacencia.computeIfAbsent(destino, k -> new ArrayList<>()).add(new Edge<>(origen.getName(), peso));
+        listaAdyacencia.computeIfAbsent(origen, k -> new ArrayList<>()).add((Edge<T>) new Edge<>(destino.getName(), peso));
+        listaAdyacencia.computeIfAbsent(destino, k -> new ArrayList<>()).add((Edge<T>) new Edge<>(origen.getName(), peso));
     }
     public Map<Vertex<T>, Integer> dijkstra(Vertex<T> inicio) {
         Map<Vertex<T>, Integer> distancias = new HashMap<>();
@@ -54,6 +54,30 @@ public class Graph1<T> {
         }
 
         return resultado;
+    }
+
+    public void mostrarConexiones(String nombreVertice) {
+        Vertex<T> verticeBuscado = null;
+        String msg="";
+        // Buscar el vértice por su nombre
+        for (Vertex<T> vertice : listaAdyacencia.keySet()) {
+            if (vertice.getName().equals(nombreVertice)) {
+                verticeBuscado = vertice;
+                break;
+            }
+        }
+
+        // Mostrar las conexiones del vértice encontrado
+        if (verticeBuscado != null) {
+            List<Edge<T>> conexiones = listaAdyacencia.get(verticeBuscado);
+
+            msg="Conexiones de " + nombreVertice + ":";
+            for (Edge<T> conexion : conexiones) {
+                msg+="  Destino: " + ((Vertex<T>)conexion.getDestino()).getName() + ", Peso: " + conexion.getPeso();
+            }
+        } else {
+            msg+="Vertice no encontrado: " + nombreVertice;
+        }
     }
 
 

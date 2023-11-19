@@ -1,14 +1,16 @@
 package com.example.demo.ClasesGrafos;
 
 public class Vertex<T> {
-    private T name;
+    private T data;
+    private String name;
 
-    public Vertex(T name) {
+    public Vertex(String name) {
         this.name = name;
     }
 
-    public T getName() {
+    public String getName() {
         return name;
     }
-
 }
+
+
