@@ -47,12 +47,76 @@ public class Player extends Entity {
     }
 
     public void update() {
+        if (keyH.upPressed) {
+            direction = "up";
+        } else if (keyH.downPressed) {
+            direction = "down";
+        } else if (keyH.leftPressed) {
+            direction = "left";
+        } else if (keyH.rightPressed) {
+            direction = "right";
+        }
+        collisionOn=false;
+        gC.collisionChecker.checkTile(this);
+        if(!collisionOn){
+            switch (direction){
+                case "up":
+                    if(keyH.upPressed){
+                        worldY -= speed;
+                    }
+                    break;
+                case "down":
+                    if(keyH.downPressed){
+                        worldY += speed;
+                    }
+                    break;
+                case "left":
+                    if(keyH.leftPressed){
+                        worldX -= speed;
+                    }
+                    break;
+                case "right":
+                    if(keyH.rightPressed){
+                        worldX += speed;
+                    }
+                    break;
+            }
+        }
+        animationSpeed2++;
+        if(animationSpeed2>=3){
+            characterCounter++;
+            if (characterCounter > animationSpeed1) {
+                characterNum = (characterNum + 1) % imagesList.size();
+                characterCounter = 0;
+            }
+            animationSpeed2=0;
+        }
 
     }
 
     public void draw(GraphicsContext g) {
-            Image image = imagesList.get(0).get(0);
+        if (!keyH.upPressed && !keyH.downPressed && !keyH.leftPressed && !keyH.rightPressed) {
+            // Si ninguna tecla está presionada, mostrar la imagen quieta
+            g.drawImage(imagesList.get(directionIndex(direction)).get(0), worldX, worldY, tamañoP, tamañoP);
+        } else {
+            // Si alguna tecla está presionada, realizar la animación normal
+            Image image = imagesList.get(directionIndex(direction)).get(characterCounter);
             g.drawImage(image, worldX, worldY, tamañoP, tamañoP);
+        }
+    }
+
+    private int directionIndex(String direction) {
+        switch (direction) {
+            case "up":
+                return 0;
+            case "left":
+                return 1;
+            case "down":
+                return 0;
+            // Add more cases as needed...
+            default:
+                return 0;
+        }
     }
 
 }
