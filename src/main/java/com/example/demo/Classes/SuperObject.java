@@ -11,11 +11,24 @@ public class SuperObject {
     public boolean collision=false;
 
     public String name;
-    public Image enemy;
+    public ArrayList<Image> enemy;
 
     public int worldX,worldY;
+    private int characterNum = 0;
+    private int characterCounter = 0;
+    private int animationSpeed1 = 8;
+    private int animationSpeed2=0;
 
     public void drawObjects(GraphicsContext graphic, GameController1 gc){
-        graphic.drawImage(enemy,worldX,worldY,48,48);
+        animationSpeed2++;
+        if(animationSpeed2>=3){
+            characterCounter++;
+            if (characterCounter > animationSpeed1) {
+                characterNum = (characterNum + 1) % enemy.size();
+                characterCounter = 0;
+            }
+            animationSpeed2=0;
+        }
+        graphic.drawImage(enemy.get(characterCounter),worldX,worldY,48,48);
     }
 }

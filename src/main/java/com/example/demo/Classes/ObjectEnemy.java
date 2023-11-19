@@ -5,6 +5,6 @@ public class ObjectEnemy extends SuperObject{
     public ObjectEnemy() {
         reader=new DataReader();
         name="Enemy";
-        enemy=reader.readImagenemy().get(0);
+        enemy=reader.readImagenemy();
     }
 }
