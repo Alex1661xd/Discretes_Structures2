@@ -31,7 +31,12 @@ public class FirstWindowController implements Initializable {
     @FXML
     public void OnPressedPlay(ActionEvent actionEvent) {
         String nicknameText = nickname.getText();
-        String typeGraph=graph.getValue().toString();
+        String typeGraph=null;
+        try {
+            typeGraph=graph.getValue().toString();
+        }catch (Exception e){
+
+        }
         if(!Objects.equals(nicknameText, "")&&typeGraph.equals("1. Graph Dijkstra, BFS, Lista")){
             HelloApplication.showWindow("GameScene", null);
             HelloApplication.hideWindow((Stage)nickname.getScene().getWindow());
