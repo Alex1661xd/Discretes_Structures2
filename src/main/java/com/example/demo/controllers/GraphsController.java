@@ -89,10 +89,11 @@ public class GraphsController {
     public String showConextions(){
         int typeGraph=getTypeGraph();
         if(typeGraph==1){
-
+            showConnectionsGraph1BFS("hj");
         }else if(typeGraph==2){
             addVertexGraph2();
         }
+        return "h";
     }
 
     public void showConnectionsGraph1BFS(String nameVertex) {
@@ -117,11 +118,12 @@ public class GraphsController {
         // Mostrar conexiones
         System.out.print("Conexiones de " + vertexToFind.getName() + ": ");
         for (Vertex<String> resultado : bfsResult) {
-            for (Object objArista : (List<Edge<String>>) grafo1.listaAdyacencia.getOrDefault(resultado, Collections.emptyList())) {
-                Edge<String> arista = (Edge<String>) objArista;
-                System.out.print("(" + arista.getDestino().getName() + ", Peso: " + arista.getPeso() + ") ");
+            List<Edge<String>> aristas = (List<Edge<String>>) grafo1.listaAdyacencia.getOrDefault(resultado, Collections.emptyList());
+            for (Edge<String> arista : aristas) {
+                System.out.print("(" + arista.getDestino()+ ", Peso: " + arista.getPeso() + ") ");
             }
         }
+
         System.out.println();
     }
 
