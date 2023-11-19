@@ -1,84 +1,62 @@
 package com.example.demo.ClasesGrafos;
 
 import java.util.*;
+import javafx.util.Pair;
+public class Graph1<V, T> {
+    private Map<V, List<Edge<V, T>>> adj;
 
-public class Graph1<T> {
-
-    //Grafo con Lista de adyacencia y Dijkstra
-    public Map<Vertex<T>, List<Edge<T>>> listaAdyacencia = new HashMap<>();
-    public void agregarAristaLista(Vertex<T> origen, Vertex<T> destino, int peso) {
-        listaAdyacencia.computeIfAbsent(origen, k -> new ArrayList<>()).add((Edge<T>) new Edge<>(destino.getName(), peso));
-        listaAdyacencia.computeIfAbsent(destino, k -> new ArrayList<>()).add((Edge<T>) new Edge<>(origen.getName(), peso));
+    public Graph1() {
+        adj = new HashMap<>();
     }
-    public Map<Vertex<T>, Integer> dijkstra(Vertex<T> inicio) {
-        Map<Vertex<T>, Integer> distancias = new HashMap<>();
-        PriorityQueue<Vertex<T>> cola = new PriorityQueue<>(Comparator.comparingInt(distancias::get));
+
+    public void agregarArista(V v, V w, T peso) {
+        adj.computeIfAbsent(v, k -> new LinkedList<>()).add(new Edge<>(w, peso));
+        // Si las aristas son bidireccionales, también agrega una arista en el sentido opuesto:
+        // adj.computeIfAbsent(w, k -> new LinkedList<>()).add(new Arista<>(v, peso));
+    }
+
+    public List<V> obtenerVecinos(V vertice) {
+        List<V> vecinos = new ArrayList<>();
+
+        List<Edge<V, T>> aristas = adj.getOrDefault(vertice, new LinkedList<>());
+        for (Edge<V, T> arista : aristas) {
+            vecinos.add(arista.destino);
+        }
+
+        return vecinos;
+    }
+
+    public String dijkstra(V inicio, V destino) {
+        Map<V, Integer> distancias = new HashMap<>();
+        PriorityQueue<Pair<Integer, V>> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(Pair::getKey));
 
         distancias.put(inicio, 0);
-        cola.add(inicio);
+        priorityQueue.add(new Pair<>(0, inicio));
 
-        while (!cola.isEmpty()) {
-            Vertex<T> actual = cola.poll();
+        while (!priorityQueue.isEmpty()) {
+            V actual = priorityQueue.poll().getValue();
 
-            for (Edge<T> arista : listaAdyacencia.getOrDefault(actual, Collections.emptyList())) {
-                int nuevaDistancia = distancias.get(actual) + arista.getPeso();
-                if (!distancias.containsKey(arista.getDestino()) || nuevaDistancia < distancias.get(arista.getDestino())) {
-                    distancias.put((Vertex<T>) arista.getDestino(), nuevaDistancia);
-                    cola.add((Vertex<T>) arista.getDestino());
-                }
-            }
-        }
-
-        return distancias;
-    }
-
-    public List<Vertex<T>> bfsLista(Vertex<T> inicio) {
-        List<Vertex<T>> resultado = new ArrayList<>();
-        Queue<Vertex<T>> cola = new LinkedList<>();
-        Set<Vertex<T>> visitados = new HashSet<>();
-
-        cola.add(inicio);
-        visitados.add(inicio);
-
-        while (!cola.isEmpty()) {
-            Vertex<T> actual = cola.poll();
-            resultado.add(actual);
-
-            for (Edge<T> arista : listaAdyacencia.getOrDefault(actual, Collections.emptyList())) {
-                Vertex<T> vecino = (Vertex<T>) arista.getDestino();
-                if (!visitados.contains(vecino)) {
-                    visitados.add(vecino);
-                    cola.add(vecino);
-                }
-            }
-        }
-
-        return resultado;
-    }
-
-    public void mostrarConexiones(String nombreVertice) {
-        Vertex<T> verticeBuscado = null;
-        String msg="";
-        // Buscar el vértice por su nombre
-        for (Vertex<T> vertice : listaAdyacencia.keySet()) {
-            if (vertice.getName().equals(nombreVertice)) {
-                verticeBuscado = vertice;
+            if (actual.equals(destino)) {
+                // Hemos llegado al destino, puedes manejarlo según tus necesidades
                 break;
             }
-        }
 
-        // Mostrar las conexiones del vértice encontrado
-        if (verticeBuscado != null) {
-            List<Edge<T>> conexiones = listaAdyacencia.get(verticeBuscado);
+            List<Edge<V, T>> aristas = adj.getOrDefault(actual, new LinkedList<>());
+            for (Edge<V, T> arista : aristas) {
+                V siguiente = arista.destino;
+                int nuevaDistancia = distancias.get(actual) + (int) arista.peso;
 
-            msg="Conexiones de " + nombreVertice + ":";
-            for (Edge<T> conexion : conexiones) {
-                msg+="  Destino: " + ((Vertex<T>)conexion.getDestino()).getName() + ", Peso: " + conexion.getPeso();
+                if (!distancias.containsKey(siguiente) || nuevaDistancia < distancias.get(siguiente)) {
+                    distancias.put(siguiente, nuevaDistancia);
+                    priorityQueue.add(new Pair<>(nuevaDistancia, siguiente));
+                }
             }
-        } else {
-            msg+="Vertice no encontrado: " + nombreVertice;
         }
+
+        String msg = "Distancias más cortas desde " + inicio + " hasta " + destino + ":";
+        for (Map.Entry<V, Integer> entry : distancias.entrySet()) {
+            msg += "\n"+inicio + " a " + entry.getKey() + ": " + "["+entry.getValue()+"]";
+        }
+        return msg;
     }
-
-
 }

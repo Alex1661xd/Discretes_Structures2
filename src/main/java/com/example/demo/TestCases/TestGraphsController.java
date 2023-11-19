@@ -1,27 +1,36 @@
 package com.example.demo.TestCases;
 
+import com.example.demo.ClasesGrafos.Graph1;
 import com.example.demo.controllers.GraphsController;
 import junit.framework.TestCase;
-import java.util.ArrayList;
 import org.junit.Before;
-import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.Optional;
+
 public class TestGraphsController extends TestCase {
-    private GraphsController graphsController;
-
+    GraphsController graphsController;
     @Before
-    public void setUp() {
-        graphsController = GraphsController.getInstance();
+    public void setUp(){
+        graphsController=new GraphsController();
         graphsController.setTypeGraph(1);
+        graphsController.addGraph();
+    }
+    public void testDijkstraWithGraph1() {
+        String msg=graphsController.showDistanciasCortas("V1","V4");
+        assertNotNull(msg);
     }
 
-    @Test
-    void showConextionsGraph1Test() {
+    public void testShowConnections() {
+        // Configuración del controlador de grafos
+        GraphsController graphsController = GraphsController.getInstance();
         graphsController.setTypeGraph(1);
-        graphsController.addVertex();
-        String result = graphsController.showConextions();
-        // Puedes agregar aserciones según tus necesidades para verificar el comportamiento esperado
-        // Aquí solo se verifica que el método no lance excepciones.
-        assertNotNull(result);
+        graphsController.addGraph();
+
+        // Prueba del método showConnections
+        String vertice = "V1";
+        assertEquals("Conexiones de V1: V2, V3", graphsController.showConnections(vertice));
     }
+
+    // Puedes agregar más casos de prueba según sea necesario
 }
