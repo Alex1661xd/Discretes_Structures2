@@ -52,22 +52,34 @@ public class GraphsController {
     }
 
     void addVertexGraph1(){
-        while (!combinaciones.isEmpty()){
-            int numOrigen=random.nextInt(combinaciones.size());
-            int numDestino=random.nextInt(combinaciones.size());
-            while (numOrigen==numDestino){
-                numDestino=random.nextInt(combinaciones.size());
+        List<String> copiaCombinaciones = new ArrayList<>(combinaciones);
+
+        while (!copiaCombinaciones.isEmpty()){
+            int numOrigen = random.nextInt(copiaCombinaciones.size());
+            int numDestino = random.nextInt(copiaCombinaciones.size());
+
+            while (numOrigen == numDestino){
+                numDestino = random.nextInt(copiaCombinaciones.size());
             }
-            String nameOrigen= combinaciones.get(numOrigen);
-            String nameDestino=combinaciones.get(numDestino);
-            Vertex vertexI= new Vertex<>(nameOrigen);
-            Vertex vertexD= new Vertex<>(nameDestino);
-            int peso=random.nextInt(6);
-            grafo1.agregarAristaLista(vertexI,vertexD,peso);
-            combinaciones.remove(numOrigen);
-            combinaciones.remove(numDestino);
+
+            String nameOrigen = copiaCombinaciones.get(numOrigen);
+            String nameDestino = copiaCombinaciones.get(numDestino);
+
+            Vertex vertexI = new Vertex<>(nameOrigen);
+            Vertex vertexD = new Vertex<>(nameDestino);
+            int peso = random.nextInt(6);
+
+            grafo1.agregarAristaLista(vertexI, vertexD, peso);
+
+            // Remover elementos de la lista original
+            combinaciones.remove(nameOrigen);
+            combinaciones.remove(nameDestino);
+
+            // Actualizar la copia de la lista
+            copiaCombinaciones = new ArrayList<>(combinaciones);
         }
     }
+
     void addVertexGraph2(){
         while (!combinaciones.isEmpty()){
             int numOrigen=random.nextInt(combinaciones.size());
@@ -120,7 +132,7 @@ public class GraphsController {
         for (Vertex<String> resultado : bfsResult) {
             List<Edge<String>> aristas = (List<Edge<String>>) grafo1.listaAdyacencia.getOrDefault(resultado, Collections.emptyList());
             for (Edge<String> arista : aristas) {
-                System.out.print("(" + arista.getDestino()+ ", Peso: " + arista.getPeso() + ") ");
+                System.out.print("(" + ((Vertex)arista.getDestino().getName())+ ", Peso: " + arista.getPeso() + ") ");
             }
         }
 
