@@ -43,6 +43,8 @@ public class GraphsController {
         grafo1.agregarArista("V2", "V4", 5);
         grafo1.agregarArista("V3", "V4", 1);
         grafo1.agregarArista("V4", "V5", 3);
+        grafo1.agregarArista("V3", "V6", 3);
+        grafo1.agregarArista("V4", "V7", 1);
     }
 
     public String showDistanciasCortas(String VInicio, String VFinal) {

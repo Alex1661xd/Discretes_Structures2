@@ -53,9 +53,12 @@ public class Graph1<V, T> {
             }
         }
 
+        // Modificación del mensaje de salida para excluir el vértice de inicio
         String msg = "Distancias más cortas desde " + inicio + " hasta " + destino + ":";
         for (Map.Entry<V, Integer> entry : distancias.entrySet()) {
-            msg += "\n"+inicio + " a " + entry.getKey() + ": " + "["+entry.getValue()+"]";
+            if (!entry.getKey().equals(inicio)) {
+                msg += "\n"+inicio + " a " + entry.getKey() + ": " + "["+entry.getValue()+"]";
+            }
         }
         return msg;
     }

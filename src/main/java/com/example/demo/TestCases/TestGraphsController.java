@@ -17,7 +17,7 @@ public class TestGraphsController extends TestCase {
         graphsController.addGraph();
     }
     public void testDijkstraWithGraph1() {
-        String msg=graphsController.showDistanciasCortas("V1","V4");
+        String msg=graphsController.showDistanciasCortas("V3","V4");
         assertNotNull(msg);
     }
 
@@ -28,8 +28,9 @@ public class TestGraphsController extends TestCase {
         graphsController.addGraph();
 
         // Prueba del método showConnections
-        String vertice = "V1";
-        assertEquals("Conexiones de V1: V2, V3", graphsController.showConnections(vertice));
+        String vertice = "V2";
+        String msg=graphsController.showConnections(vertice);
+        assertEquals("Conexiones de V2: V4", graphsController.showConnections(vertice));
     }
 
     // Puedes agregar más casos de prueba según sea necesario
