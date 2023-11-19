@@ -132,4 +132,8 @@ public class Background {
         }
         return null;
     }
+
+    public ArrayList<BackgroundEn> getTile() {
+        return tile;
+    }
 }

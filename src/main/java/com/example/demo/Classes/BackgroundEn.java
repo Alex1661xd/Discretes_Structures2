@@ -10,5 +10,7 @@ public class BackgroundEn {
 
     public int worldX,worldY;
 
+    public boolean isEnemyPosition=false;
+
     public String name;
 }

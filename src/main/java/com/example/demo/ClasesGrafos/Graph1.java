@@ -5,7 +5,7 @@ import java.util.*;
 public class Graph1<T> {
 
     //Grafo con Lista de adyacencia y Dijkstra
-    private Map<Vertex<T>, List<Edge<T>>> listaAdyacencia = new HashMap<>();
+    public Map<Vertex<T>, List<Edge<T>>> listaAdyacencia = new HashMap<>();
     public void agregarAristaLista(Vertex<T> origen, Vertex<T> destino, int peso) {
         listaAdyacencia.computeIfAbsent(origen, k -> new ArrayList<>()).add(new Edge<>(destino.getName(), peso));
         listaAdyacencia.computeIfAbsent(destino, k -> new ArrayList<>()).add(new Edge<>(origen.getName(), peso));

@@ -26,7 +26,7 @@ public class FirstWindowController implements Initializable {
     public ImageView image;
     public Region region;
     public TextField nickname;
-
+    public GraphsController gpController;
     private DataReader reader;
     @FXML
     public void OnPressedPlay(ActionEvent actionEvent) {
@@ -38,10 +38,12 @@ public class FirstWindowController implements Initializable {
 
         }
         if(!Objects.equals(nicknameText, "")&&typeGraph.equals("1. Graph Dijkstra, BFS, Lista")){
-            HelloApplication.showWindow("GameScene", null);
+            gpController.setTypeGraph(1);
+            HelloApplication.showWindow("GameScene", null,768,576);
             HelloApplication.hideWindow((Stage)nickname.getScene().getWindow());
         }else if(!Objects.equals(nicknameText, "")&&typeGraph.equals("2. Graph Warshall , DFS, Matriz")){
-            HelloApplication.showWindow("GameScene", null);
+            gpController.setTypeGraph(2);
+            HelloApplication.showWindow("GameScene", null,768,576);
             HelloApplication.hideWindow((Stage)nickname.getScene().getWindow());
         }
 
@@ -51,6 +53,7 @@ public class FirstWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reader=new DataReader();
+        gpController=GraphsController.getInstance();
         region.setStyle("-fx-background-color: #A0A0A0;");
         image.setImage(reader.imageFirstWindow());
         graph.getItems().add("1. Graph Dijkstra, BFS, Lista");

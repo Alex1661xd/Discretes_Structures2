@@ -23,11 +23,11 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void showWindow(String fxml, Stage stage){
+    public static void showWindow(String fxml, Stage stage, int v1, int v2){
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fxml+".fxml"));
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 768, 576);
+            scene = new Scene(fxmlLoader.load(), v1, v2);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
