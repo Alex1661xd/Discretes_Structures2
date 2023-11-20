@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Entity {
+
+    private static Player player;
     private final GameController1 gC;
     private final KeyHandler keyH;
     private final DataReader lector;
@@ -20,7 +22,7 @@ public class Player extends Entity {
     private int animationSpeed2=0;
 
 
-    public Player(GameController1 gC, KeyHandler keyH) {
+    private Player(GameController1 gC, KeyHandler keyH) {
         this.gC = gC;
         this.keyH = keyH;
         this.lector = new DataReader();
@@ -31,6 +33,15 @@ public class Player extends Entity {
         coliArea.setY(32);
         coliArea.setWidth(30);
         coliArea.setHeight(32);
+    }
+
+    public static Player PlayerGetInstance(GameController1 gC,KeyHandler keyH){
+        if(player==null){
+            player=new Player(gC,keyH);
+        }else{
+            return player;
+        }
+        return player;
     }
 
     private void initializeImagesList() {

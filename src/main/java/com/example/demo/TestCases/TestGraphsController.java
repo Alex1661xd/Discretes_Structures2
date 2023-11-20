@@ -12,7 +12,7 @@ public class TestGraphsController extends TestCase {
     GraphsController graphsController;
     @Before
     public void setUp(){
-        graphsController=new GraphsController();
+        graphsController=GraphsController.getInstance();
         graphsController.setTypeGraph(1);
         graphsController.addGraph();
     }

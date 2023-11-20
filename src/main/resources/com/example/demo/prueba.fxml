@@ -3,10 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.SelectionGraphController">
    <children>
-      <TextField fx:id="selecteG" layoutX="226.0" layoutY="188.0" promptText="graph" />
-      <Label fx:id="showOpt" layoutX="286.0" layoutY="141.0" text="Options" />
+      <Button fx:id="aceptar" layoutX="274.0" layoutY="299.0" mnemonicParsing="false" onAction="#OnBottom" text="Aceptar" />
+      <TextField fx:id="selecteG" layoutX="226.0" layoutY="250.0" promptText="Graph" />
    </children>
 </AnchorPane>

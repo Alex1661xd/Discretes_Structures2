@@ -11,13 +11,23 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Background {
+
+    private static Background background;
     GameController1 gp;
     ArrayList<BackgroundEn> tile;
     public double[][] mapBackNum;
     ArrayList<String> combinaciones;
+
+    ArrayList<Nenufar> nenufares;
     DataReader lector;
 
-    public Background(GameController1 gp) {
+    int contador=1;
+
+    KeyHandler keyH;
+
+    private Background(GameController1 gp, KeyHandler keyH) {
+        nenufares=new ArrayList<>();
+        this.keyH=keyH;
         this.gp = gp;
         tile= new ArrayList<>();
         lector=new DataReader();
@@ -28,15 +38,24 @@ public class Background {
         loadMap();
     }
 
+    public static Background BackgroundGetInstance(GameController1 gp,KeyHandler keyH){
+        if(background==null){
+            background=new Background(gp,keyH);
+        }else{
+            return background;
+        }
+        return background;
+    }
+
 
 
     public void getResources(){
         ArrayList<Image>iconosSen= lector.readImageBackground(5);
         for (int i = 0; i < iconosSen.size(); i++) {
             tile.add(new BackgroundEn());
-            tile.get(i).background=iconosSen.get(i);
+            tile.get(i).setBackground(iconosSen.get(i));
             if(i==3||i==5||i==9||i==7){
-                tile.get(i).collision=true;
+                tile.get(i).setCollision(true);
             }
         }
     }
@@ -88,15 +107,11 @@ public class Background {
 
         while (col < 16 && row < 12) {
             double num = mapBackNum[col][row];
-            if(num==0||num==10){
-                tile.get((int)num).worldX=x;
-                tile.get((int)num).worldY=y;
-                if(!combinaciones.isEmpty()){
-                    tile.get((int)num).name=combinaciones.get(0);
-                    combinaciones.remove(0);
-                }
+            if (num==0||num==10){
+                nenufares.add(new Nenufar(x,y,"V"+contador));
+                contador++;
             }
-            g.drawImage(tile.get((int) num).background, x, y, 48, 48);
+            g.drawImage(tile.get((int) num).getBackground(), x, y, 48, 48);
             col++;
             x += 48;
             if (col == 16) {
@@ -124,10 +139,11 @@ public class Background {
         return combinaciones;
     }
 
-    public BackgroundEn searchTile(String name){
-        for (int i = 0; i < tile.size(); i++) {
-            if(tile.get(i).name.equals(name)){
-                return tile.get(i);
+    public Nenufar searchTile(String name){
+        for (int i = 0; i < nenufares.size(); i++) {
+            if(nenufares.get(i).name.equals(name)){
+                return nenufares.get(i);
+
             }
         }
         return null;

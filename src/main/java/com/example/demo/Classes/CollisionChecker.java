@@ -25,7 +25,7 @@ public class CollisionChecker {
                 entityTopRow=(entityTopWorldY - entity.speed)/48;
                 tileNum1=gc.backGround.mapBackNum[(int) entityLeftCol][(int) entityTopRow];
                 tileNum2=gc.backGround.mapBackNum[(int) entityRightCol][(int)entityTopRow];
-                if(gc.backGround.tile.get((int) tileNum1).collision || gc.backGround.tile.get((int) tileNum2).collision){
+                if(gc.backGround.tile.get((int) tileNum1).isCollision() || gc.backGround.tile.get((int) tileNum2).isCollision()){
                     entity.collisionOn=true;
                 }
                 break;
@@ -33,7 +33,7 @@ public class CollisionChecker {
                 entityLeftCol=(entityLeftWorldX - entity.speed)/48;
                 tileNum1=gc.backGround.mapBackNum[(int) entityLeftCol][(int) entityTopRow];
                 tileNum2=gc.backGround.mapBackNum[(int) entityLeftCol][(int)entityBottomRow];
-                if(gc.backGround.tile.get((int) tileNum1).collision || gc.backGround.tile.get((int) tileNum2).collision){
+                if(gc.backGround.tile.get((int) tileNum1).isCollision() || gc.backGround.tile.get((int) tileNum2).isCollision()){
                     entity.collisionOn=true;
                 }
                 break;
@@ -41,7 +41,7 @@ public class CollisionChecker {
                 entityRightCol=(entityRightWorldX + entity.speed)/48;
                 tileNum1=gc.backGround.mapBackNum[(int) entityRightCol][(int) entityTopRow];
                 tileNum2=gc.backGround.mapBackNum[(int) entityRightCol][(int)entityBottomRow];
-                if(gc.backGround.tile.get((int) tileNum1).collision || gc.backGround.tile.get((int) tileNum2).collision){
+                if(gc.backGround.tile.get((int) tileNum1).isCollision() || gc.backGround.tile.get((int) tileNum2).isCollision()){
                     entity.collisionOn=true;
                 }
                 break;
@@ -49,7 +49,7 @@ public class CollisionChecker {
                 entityBottomRow=(entityBottomWorldY + entity.speed)/48;
                 tileNum1=gc.backGround.mapBackNum[(int) entityLeftCol][(int) entityBottomRow];
                 tileNum2=gc.backGround.mapBackNum[(int) entityRightCol][(int)entityBottomRow];
-                if(gc.backGround.tile.get((int) tileNum1).collision || gc.backGround.tile.get((int) tileNum2).collision){
+                if(gc.backGround.tile.get((int) tileNum1).isCollision() || gc.backGround.tile.get((int) tileNum2).isCollision()){
                     entity.collisionOn=true;
                 }
                 break;

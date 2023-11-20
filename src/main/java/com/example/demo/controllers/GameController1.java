@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 import com.example.demo.Classes.*;
+import com.example.demo.HelloApplication;
+import javafx.event.ActionEvent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.DialogPane;
 import javafx.scene.layout.Pane;
@@ -28,6 +30,8 @@ public class GameController1 implements Initializable, Runnable{
     public setObject setObject;
     public SuperObject[] object;
     public CollisionChecker collisionChecker;
+
+    public FirstWindowController firstWindow;
     int FPS=60;
 
     public GameController1() {
@@ -42,12 +46,13 @@ public class GameController1 implements Initializable, Runnable{
         keyH=new KeyHandler(canvas);
         canvas.setFocusTraversable(true);
         pane.setFocusTraversable(true);
-        backGround= new Background(this);
+        backGround= Background.BackgroundGetInstance(this,keyH);
         object=new SuperObject[9];
         setObject=new setObject(this);
         setObjects();
         collisionChecker=new CollisionChecker(this);
-        player=new Player(this,keyH);
+        player=Player.PlayerGetInstance(this,keyH);
+        firstWindow=new FirstWindowController();
         startGameThread();
     }
     public void startGameThread(){
@@ -103,4 +108,7 @@ public class GameController1 implements Initializable, Runnable{
         player.draw(gc);
     }
 
+    public void OpenWindow(ActionEvent actionEvent) {
+        HelloApplication.showWindow("hello-view",null,320,320);
+    }
 }

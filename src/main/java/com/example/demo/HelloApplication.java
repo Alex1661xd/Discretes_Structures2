@@ -12,10 +12,16 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FirstW.fxml"));
+        FXMLLoader fxmlLoader =null;
+        try {
+             fxmlLoader=new FXMLLoader(getClass().getResource("GameScene.fxml"));
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
         Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(root, 700, 435);
+        Scene scene = new Scene(root, 768, 576);
 
         stage.setTitle("2D Adventure");
         stage.setScene(scene);

@@ -10,7 +10,7 @@ public class GraphsController {
     private static GraphsController graphCont;
     private Random random;
 
-    public GraphsController() {
+    private GraphsController() {
         grafo1 = new Graph1<>();
         random = new Random();
     }
