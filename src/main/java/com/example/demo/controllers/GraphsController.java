@@ -54,9 +54,9 @@ public class GraphsController {
 
     }
 
-    public String showDistanciasCortas(String VInicio, String VFinal) {
-        String msg = "Distancias más cortas desde " + VInicio + ":";
-        msg+=grafo1.dijkstra(VInicio, VFinal);
+    public int showDistanciasCortas(String VInicio, String VFinal) {
+        int msg = -1;
+        msg=grafo1.dijkstra(VInicio, VFinal);
         return msg;
     }
 

@@ -35,9 +35,12 @@ public class SelectionGraphController implements Initializable {
         reader=new DataReader();
         String nameNenufarActual=Player.PlayerGetInstance(null,null).getNameNenufar();
         Nenufar nenufar=Background.BackgroundGetInstance(null,null).searchTile(nameNenufarActual);
+        System.out.println("Vidas:"+Player.PlayerGetInstance(null,null).getVidas());
+        System.out.println("Energia:"+Player.PlayerGetInstance(null,null).getEnergia());
         Image imagen=null;
         if(nenufar.enemy){
             imagen=reader.imageNenufar(1);
+            Player.PlayerGetInstance(null,null).setVidas(Player.PlayerGetInstance(null,null).getVidas()-1);
             Image.setImage(imagen);
         }else{
             imagen=reader.imageNenufar(0);
@@ -53,6 +56,13 @@ public class SelectionGraphController implements Initializable {
     public void OnN1(ActionEvent actionEvent) {
         Nenufar nenufar= Background.BackgroundGetInstance(null,null).searchTile(N1.getText());
         if(nenufar!=null){
+            int descogida=GraphsController.getInstance().showDistanciasCortas(Player.PlayerGetInstance(null,null).getNameNenufar(),N1.getText());
+            int dOpcion2=GraphsController.getInstance().showDistanciasCortas(Player.PlayerGetInstance(null,null).getNameNenufar(),N2.getText());
+            if(descogida>dOpcion2){
+                Player.PlayerGetInstance(null,null).setEnergia(Player.PlayerGetInstance(null,null).getEnergia()-1);
+            }
+            System.out.println("Escodiga: "+descogida);
+            System.out.println("Otra:"+dOpcion2);
             Player.PlayerGetInstance(null,null).setNameNenufar(nenufar.name);
             int nenufarX=nenufar.getWorldX()+3;
             int nenufarY=nenufar.getWorldY()-20;
@@ -67,6 +77,13 @@ public class SelectionGraphController implements Initializable {
     public void OnN2(ActionEvent actionEvent) {
         Nenufar nenufar= Background.BackgroundGetInstance(null,null).searchTile(N2.getText());
         if(nenufar!=null){
+            int descogida=GraphsController.getInstance().showDistanciasCortas(Player.PlayerGetInstance(null,null).getNameNenufar(),N2.getText());
+            int dOpcion2=GraphsController.getInstance().showDistanciasCortas(Player.PlayerGetInstance(null,null).getNameNenufar(),N1.getText());
+            if(descogida>dOpcion2){
+                Player.PlayerGetInstance(null,null).setEnergia(Player.PlayerGetInstance(null,null).getEnergia()-1);
+            }
+            System.out.println("Escodiga: "+descogida);
+            System.out.println("Otra:"+dOpcion2);
             Player.PlayerGetInstance(null,null).setNameNenufar(nenufar.name);
             int nenufarX=nenufar.getWorldX()+3;
             int nenufarY=nenufar.getWorldY()-20;

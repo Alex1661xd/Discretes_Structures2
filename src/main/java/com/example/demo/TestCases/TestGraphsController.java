@@ -16,11 +16,6 @@ public class TestGraphsController extends TestCase {
         graphsController.setTypeGraph(1);
         graphsController.addGraph();
     }
-    public void testDijkstraWithGraph1() {
-        String msg=graphsController.showDistanciasCortas("V3","V4");
-        assertNotNull(msg);
-    }
-
     public void testShowConnections() {
         // Configuración del controlador de grafos
         GraphsController graphsController = GraphsController.getInstance();

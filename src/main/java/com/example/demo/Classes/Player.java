@@ -21,7 +21,26 @@ public class Player extends Entity {
     private int animationSpeed1 = 8;
     private int animationSpeed2=0;
 
+    private int vidas=3;
+    private int energia=10;
     private String nameNenufar="V0";
+
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+
+    public int getEnergia() {
+        return energia;
+    }
+
+    public void setEnergia(int energia) {
+        this.energia = energia;
+    }
 
     public String getNameNenufar() {
         return nameNenufar;

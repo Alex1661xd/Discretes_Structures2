@@ -26,7 +26,7 @@ public class Graph1<V, T> {
         return vecinos;
     }
 
-    public String dijkstra(V inicio, V destino) {
+    public int dijkstra(V inicio, V destino) {
         Map<V, Integer> distancias = new HashMap<>();
         PriorityQueue<Pair<Integer, V>> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(Pair::getKey));
 
@@ -53,13 +53,12 @@ public class Graph1<V, T> {
             }
         }
 
-        // Modificación del mensaje de salida para excluir el vértice de inicio
-        String msg = "Distancias más cortas desde " + inicio + " hasta " + destino + ":";
-        for (Map.Entry<V, Integer> entry : distancias.entrySet()) {
-            if (!entry.getKey().equals(inicio)) {
-                msg += "\n"+inicio + " a " + entry.getKey() + ": " + "["+entry.getValue()+"]";
-            }
+        int msg=-1;
+
+        if (distancias.containsKey(inicio) && distancias.containsKey(destino)) {
+            msg=distancias.get(destino);
         }
+
         return msg;
     }
 }
