@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demo.controllers.SelectionGraphController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.SelectionGraphController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+   <Canvas fx:id="nenufarImage" height="93.0" width="158.0" />
 
-    <Label fx:id="welcomeText" />
-   <TextField fx:id="graph" promptText="Graph" />
+    <Label fx:id="welcomeText" text="Este nenufar esta conectado a:" />
+   <Label fx:id="options" />
+   <TextField fx:id="graph" promptText="Nenufar">
+      <font>
+         <Font name="Eras Bold ITC" size="12.0" />
+      </font></TextField>
     <Button fx:id="select" onAction="#onHelloButtonClick" text="Select" />
 </VBox>

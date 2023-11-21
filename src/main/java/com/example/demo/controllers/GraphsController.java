@@ -38,13 +38,20 @@ public class GraphsController {
     }
 
     private void addGraph1() {
-        grafo1.agregarArista("V1", "V2", 0);
-        grafo1.agregarArista("V1", "V3", 2);
-        grafo1.agregarArista("V2", "V4", 5);
-        grafo1.agregarArista("V3", "V4", 1);
-        grafo1.agregarArista("V4", "V5", 3);
-        grafo1.agregarArista("V3", "V6", 3);
-        grafo1.agregarArista("V4", "V7", 1);
+        Random random = new Random();
+
+        for (int i = 0; i <= 50; i++) {
+            int pesoArista1 = random.nextInt(5) + 1;
+            int pesoArista2 = random.nextInt(5) + 1;
+
+            // Conectar el vértice actual a dos vértices aleatorios con pesos aleatorios
+            String verticeDestino1 = "V" + (random.nextInt(51));
+            String verticeDestino2 = "V" + (random.nextInt(51));
+
+            grafo1.agregarArista("V" + i, verticeDestino1, pesoArista1);
+            grafo1.agregarArista("V" + i, verticeDestino2, pesoArista2);
+        }
+
     }
 
     public String showDistanciasCortas(String VInicio, String VFinal) {
@@ -54,7 +61,7 @@ public class GraphsController {
     }
 
     public String showConnections(String vertice) {
-        StringBuilder msg = new StringBuilder("Conexiones de " + vertice + ": ");
+        StringBuilder msg = new StringBuilder();
         List<String> conexiones = getConnections(vertice);
 
         if (conexiones.isEmpty()) {

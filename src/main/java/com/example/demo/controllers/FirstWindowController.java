@@ -39,10 +39,12 @@ public class FirstWindowController implements Initializable {
         }
         if(!Objects.equals(nicknameText, "")&&typeGraph.equals("1. Graph Dijkstra, BFS, Lista")){
             gpController.setTypeGraph(1);
+            gpController.addGraph();
             HelloApplication.showWindow("GameScene", null,768,576);
             HelloApplication.hideWindow((Stage)nickname.getScene().getWindow());
         }else if(!Objects.equals(nicknameText, "")&&typeGraph.equals("2. Graph Warshall , DFS, Matriz")){
             gpController.setTypeGraph(2);
+            gpController.addGraph();
             HelloApplication.showWindow("GameScene", null,768,576);
             HelloApplication.hideWindow((Stage)nickname.getScene().getWindow());
         }

@@ -21,7 +21,7 @@ public class Background {
     ArrayList<Nenufar> nenufares;
     DataReader lector;
 
-    int contador=1;
+    int contador=0;
 
     KeyHandler keyH;
 
@@ -32,7 +32,6 @@ public class Background {
         tile= new ArrayList<>();
         lector=new DataReader();
         combinaciones = new ArrayList<>();
-        combinacionesList();
         mapBackNum= new double[16][12];
         getResources();
         loadMap();
@@ -109,6 +108,9 @@ public class Background {
             double num = mapBackNum[col][row];
             if (num==0||num==10){
                 nenufares.add(new Nenufar(x,y,"V"+contador));
+                if(contador==6||contador==8||contador==19||contador==21||contador==31||contador==43||contador==48||contador==59||contador==63){
+                    nenufares.get(contador).enemy=true;
+                }
                 contador++;
             }
             g.drawImage(tile.get((int) num).getBackground(), x, y, 48, 48);
@@ -123,18 +125,7 @@ public class Background {
         }
     }
 
-    public void combinacionesList(){
-        for (int i = 1; i <= 50; i++) {
-            String combinacion = obtenerCombinacion(i);
-            combinaciones.add(combinacion);
-        }
-    }
 
-    private static String obtenerCombinacion(int numero) {
-        char primeraLetra = (char) ('A' + (numero - 1) % 26);
-        char ultimaLetra = (char) ('Z' - (numero - 1) % 26);
-        return String.valueOf(primeraLetra) + String.valueOf(ultimaLetra);
-    }
     public ArrayList<String> getCombinaciones() {
         return combinaciones;
     }

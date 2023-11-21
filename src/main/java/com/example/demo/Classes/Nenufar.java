@@ -5,6 +5,8 @@ public class Nenufar {
     public int WorldX,WorldY;
     public String name;
 
+    public boolean enemy=false;
+
     public Nenufar(int worldX, int worldY, String name) {
         WorldX = worldX;
         WorldY = worldY;

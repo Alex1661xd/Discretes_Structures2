@@ -21,6 +21,15 @@ public class Player extends Entity {
     private int animationSpeed1 = 8;
     private int animationSpeed2=0;
 
+    private String nameNenufar="V0";
+
+    public String getNameNenufar() {
+        return nameNenufar;
+    }
+
+    public void setNameNenufar(String nameNenufar) {
+        this.nameNenufar = nameNenufar;
+    }
 
     private Player(GameController1 gC, KeyHandler keyH) {
         this.gC = gC;
