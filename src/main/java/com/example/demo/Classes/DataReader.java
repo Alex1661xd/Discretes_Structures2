@@ -114,8 +114,22 @@ public class DataReader {
                 imageList.add(image);
             }
         }
-
         return imageList.get(0);
+    }
+
+    public Image imageNenufar(int option){
+        iconos=new File(dataFolder + "/Nenufar");
+        File folder=iconos;
+        File[] pngFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".png"));
+        ArrayList<Image> imageList = new ArrayList<>();
+
+        if (pngFiles != null) {
+            for (File pngFile : pngFiles) {
+                Image image = new Image(pngFile.toURI().toString());
+                imageList.add(image);
+            }
+        }
+        return imageList.get(option);
     }
 
 }

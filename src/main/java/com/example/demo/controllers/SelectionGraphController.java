@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.Classes.Background;
+import com.example.demo.Classes.DataReader;
 import com.example.demo.Classes.Nenufar;
 import com.example.demo.Classes.Player;
 import com.example.demo.HelloApplication;
@@ -10,6 +11,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -19,14 +22,15 @@ public class SelectionGraphController implements Initializable {
     public TextField graph;
     public Button select;
     public Label options;
-    public Canvas nenufarImage;
+    public ImageView Image;
     @FXML
     private Label welcomeText;
+
+    DataReader reader;
 
     @FXML
     protected void onHelloButtonClick() {
         String nameVector=graph.getText();
-        System.out.println(nameVector);
         Nenufar nenufar= Background.BackgroundGetInstance(null,null).searchTile(nameVector);
         if(nenufar!=null){
             Player.PlayerGetInstance(null,null).setNameNenufar(nenufar.name);
@@ -43,8 +47,19 @@ public class SelectionGraphController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        reader=new DataReader();
+        String nameNenufarActual=Player.PlayerGetInstance(null,null).getNameNenufar();
+        Nenufar nenufar=Background.BackgroundGetInstance(null,null).searchTile(nameNenufarActual);
+        Image imagen=null;
+        if(nenufar.enemy){
+            imagen=reader.imageNenufar(1);
+            Image.setImage(imagen);
+        }else{
+            imagen=reader.imageNenufar(0);
+            Image.setImage(imagen);
+        }
         String options1=GraphsController.getInstance().showConnections(Player.PlayerGetInstance(null,null).getNameNenufar());
         options.setText(options1);
-        nenufarImage.getGraphicsContext2D().drawImage();
+
     }
 }
