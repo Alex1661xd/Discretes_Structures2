@@ -5,6 +5,7 @@ import com.example.demo.Classes.DataReader;
 import com.example.demo.Classes.Nenufar;
 import com.example.demo.Classes.Player;
 import com.example.demo.HelloApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -19,8 +20,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SelectionGraphController implements Initializable {
-    public TextField graph;
-    public Button select;
+    public Button N1;
+    public Button N2;
     public Label options;
     public ImageView Image;
     @FXML
@@ -28,22 +29,6 @@ public class SelectionGraphController implements Initializable {
 
     DataReader reader;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        String nameVector=graph.getText();
-        Nenufar nenufar= Background.BackgroundGetInstance(null,null).searchTile(nameVector);
-        if(nenufar!=null){
-            Player.PlayerGetInstance(null,null).setNameNenufar(nenufar.name);
-            int nenufarX=nenufar.getWorldX()+3;
-            int nenufarY=nenufar.getWorldY()-20;
-            Player.PlayerGetInstance(null,null).worldX=nenufarX;
-            Player.PlayerGetInstance(null,null).worldY=nenufarY;
-            HelloApplication.hideWindow((Stage)graph.getScene().getWindow());
-        }else{
-            System.out.println("Ocurrio un error");
-        }
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,7 +44,37 @@ public class SelectionGraphController implements Initializable {
             Image.setImage(imagen);
         }
         String options1=GraphsController.getInstance().showConnections(Player.PlayerGetInstance(null,null).getNameNenufar());
-        options.setText(options1);
+        String[] partes = options1.split(",");
 
+        N1.setText(partes[0].trim());
+        N2.setText(partes[1].trim());
+    }
+
+    public void OnN1(ActionEvent actionEvent) {
+        Nenufar nenufar= Background.BackgroundGetInstance(null,null).searchTile(N1.getText());
+        if(nenufar!=null){
+            Player.PlayerGetInstance(null,null).setNameNenufar(nenufar.name);
+            int nenufarX=nenufar.getWorldX()+3;
+            int nenufarY=nenufar.getWorldY()-20;
+            Player.PlayerGetInstance(null,null).worldX=nenufarX;
+            Player.PlayerGetInstance(null,null).worldY=nenufarY;
+            HelloApplication.hideWindow((Stage)options.getScene().getWindow());
+        }else{
+            System.out.println("Ocurrio un error");
+        }
+    }
+
+    public void OnN2(ActionEvent actionEvent) {
+        Nenufar nenufar= Background.BackgroundGetInstance(null,null).searchTile(N2.getText());
+        if(nenufar!=null){
+            Player.PlayerGetInstance(null,null).setNameNenufar(nenufar.name);
+            int nenufarX=nenufar.getWorldX()+3;
+            int nenufarY=nenufar.getWorldY()-20;
+            Player.PlayerGetInstance(null,null).worldX=nenufarX;
+            Player.PlayerGetInstance(null,null).worldY=nenufarY;
+            HelloApplication.hideWindow((Stage)options.getScene().getWindow());
+        }else{
+            System.out.println("Ocurrio un error");
+        }
     }
 }

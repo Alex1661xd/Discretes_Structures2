@@ -12,7 +12,7 @@
    <ImageView fx:id="Image" fitHeight="86.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" />
 
     <Label fx:id="welcomeText" text="Este nenufar esta conectado a:" />
-   <Button mnemonicParsing="false" textFill="RED" />
-    <Button fx:id="N1" onAction="#onHelloButtonClick" textFill="RED" />
+    <Button fx:id="N1" focusTraversable="false" onAction="#OnN1" text="N1" textFill="RED" />
+   <Button fx:id="N2" focusTraversable="false" mnemonicParsing="false" onAction="#OnN2" text="N2" textFill="RED" />
    <Label fx:id="options" text="-Elije uno" />
 </VBox>
