@@ -71,6 +71,8 @@ public class DataReader {
             caracterP = new File(dataFolder + "/desencriptados/caracterPrincipal/corriendoD");
         } else if (option == 2) {
             caracterP = new File(dataFolder + "/desencriptados/caracterPrincipal/corriendoI");
+        }else if (option == 3) {
+            caracterP = new File(dataFolder + "/desencriptados/iconos");
         }
             File folder = caracterP;
             File[] pngFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".png"));

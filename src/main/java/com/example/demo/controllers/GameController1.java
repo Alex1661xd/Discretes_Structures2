@@ -80,7 +80,6 @@ public class GameController1 implements Initializable, Runnable{
             lastTime=currenTime;
 
             if(delta>=1){
-                update();
                 paint();
                 delta--;
                 drawCount++;
@@ -91,10 +90,6 @@ public class GameController1 implements Initializable, Runnable{
                 timer=0;
             }
         }
-    }
-
-    public void update(){
-        player.update();
     }
 
     public void paint(){

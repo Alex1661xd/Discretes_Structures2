@@ -75,7 +75,7 @@ public class Player extends Entity {
     private void initializeImagesList() {
         imagesList = new ArrayList<>();
         imagesList.add(lector.readImageCP(1));  // Images for "right"
-        imagesList.add(lector.readImageCP(2));  // Images for "left"/
+        imagesList.add(lector.readImageCP(3)); //Images icons
     }
 
     public void setDefaultValues() {
@@ -85,12 +85,14 @@ public class Player extends Entity {
         direction = "down";
     }
 
-    public void update() {
-
-    }
-
     public void draw(GraphicsContext g) {
         g.drawImage(imagesList.get(0).get(0), worldX, worldY, tamañoP, tamañoP);
+        int x=15;
+        int y=535;
+        for (int i = 0; i < vidas; i++) {
+            g.drawImage(imagesList.get(1).get(0), x, y, 28, 28);
+            x+=28;
+        }
     }
 
 
