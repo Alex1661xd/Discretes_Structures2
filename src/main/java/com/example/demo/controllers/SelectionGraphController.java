@@ -48,9 +48,14 @@ public class SelectionGraphController implements Initializable {
         }
         String options1=GraphsController.getInstance().showConnections(Player.PlayerGetInstance(null,null).getNameNenufar());
         String[] partes = options1.split(",");
+        if(GraphsController.getInstance().getTypeGraph()==2){
+            N1.setText(partes[1].trim());
+            N2.setText(partes[2].trim());
+        }else if(GraphsController.getInstance().getTypeGraph()==1){
+            N1.setText(partes[0].trim());
+            N2.setText(partes[1].trim());
+        }
 
-        N1.setText(partes[0].trim());
-        N2.setText(partes[1].trim());
     }
 
     public void OnN1(ActionEvent actionEvent) {

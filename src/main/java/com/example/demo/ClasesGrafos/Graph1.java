@@ -1,7 +1,9 @@
 package com.example.demo.ClasesGrafos;
 
-import java.util.*;
 import javafx.util.Pair;
+
+import java.util.*;
+
 public class Graph1<V, T> {
     private Map<V, List<Edge<V, T>>> adj;
 
@@ -9,18 +11,67 @@ public class Graph1<V, T> {
         adj = new HashMap<>();
     }
 
-    public void agregarArista(V v, V w, T peso) {
-        adj.computeIfAbsent(v, k -> new LinkedList<>()).add(new Edge<>(w, peso));
-        // Si las aristas son bidireccionales, también agrega una arista en el sentido opuesto:
-        // adj.computeIfAbsent(w, k -> new LinkedList<>()).add(new Arista<>(v, peso));
+    public void agregarVertice(V vertice) {
+        adj.put(vertice, new LinkedList<>());
     }
 
-    public List<V> obtenerVecinos(V vertice) {
-        List<V> vecinos = new ArrayList<>();
+    public void agregarArista(V v, V w, T peso) {
+        adj.computeIfAbsent(v, k -> new LinkedList<>()).add(new Edge<>(w, peso));
+    }
 
-        List<Edge<V, T>> aristas = adj.getOrDefault(vertice, new LinkedList<>());
-        for (Edge<V, T> arista : aristas) {
-            vecinos.add(arista.destino);
+    public void imprimirGrafo() {
+        for (V origen : adj.keySet()) {
+            for (Edge<V, T> arista : adj.get(origen)) {
+                V destino = arista.destino;
+                T peso = arista.peso;
+                System.out.println(origen + " -> " + destino + " : " + peso);
+            }
+        }
+    }
+
+    public void conectarAleatoriamente(int numVertices, int maxAristas, int maxPeso) {
+        Random random = new Random();
+
+        for (int i = 0; i < numVertices; i++) {
+            V vertice = (V) ("V" + i);
+            agregarVertice(vertice);
+
+            int numAristas = random.nextInt(maxAristas) + 1;
+
+            for (int j = 0; j < numAristas; j++) {
+                V verticeDestino = null;
+                final V finalVerticeDestino = verticeDestino;
+                do {
+                    verticeDestino = (V) ("V" + (random.nextInt(numVertices)));
+                } while (adj.get(vertice).stream().anyMatch(edge -> edge.destino.equals(finalVerticeDestino)));
+
+                T pesoArista = (T) Integer.valueOf(random.nextInt(maxPeso) + 1);
+
+                agregarArista(vertice, verticeDestino, pesoArista);
+            }
+        }
+    }
+
+    public List<V> obtenerVecinosBFS(V inicio) {
+        List<V> vecinos = new ArrayList<>();
+        Set<V> visitados = new HashSet<>();
+        Queue<V> cola = new LinkedList<>();
+
+        cola.add(inicio);
+        visitados.add(inicio);
+
+        while (!cola.isEmpty()) {
+            V actual = cola.poll();
+            vecinos.add(actual);
+
+            List<Edge<V, T>> aristas = adj.getOrDefault(actual, new LinkedList<>());
+            for (Edge<V, T> arista : aristas) {
+                V vecino = arista.destino;
+                if (!visitados.contains(vecino)) {
+                    cola.add(vecino);
+                    visitados.add(vecino);
+                }
+            }
         }
 
         return vecinos;
@@ -37,7 +88,6 @@ public class Graph1<V, T> {
             V actual = priorityQueue.poll().getValue();
 
             if (actual.equals(destino)) {
-                // Hemos llegado al destino, puedes manejarlo según tus necesidades
                 break;
             }
 
@@ -53,12 +103,13 @@ public class Graph1<V, T> {
             }
         }
 
-        int msg=-1;
+        int msg = -1;
 
         if (distancias.containsKey(inicio) && distancias.containsKey(destino)) {
-            msg=distancias.get(destino);
+            msg = distancias.get(destino);
         }
 
         return msg;
     }
+
 }

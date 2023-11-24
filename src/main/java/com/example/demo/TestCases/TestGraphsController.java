@@ -13,13 +13,13 @@ public class TestGraphsController extends TestCase {
     @Before
     public void setUp(){
         graphsController=GraphsController.getInstance();
-        graphsController.setTypeGraph(1);
+        graphsController.setTypeGraph(2);
         graphsController.addGraph();
     }
     public void testShowConnections() {
         // Configuración del controlador de grafos
         GraphsController graphsController = GraphsController.getInstance();
-        graphsController.setTypeGraph(1);
+        graphsController.setTypeGraph(2);
         graphsController.addGraph();
 
         // Prueba del método showConnections
