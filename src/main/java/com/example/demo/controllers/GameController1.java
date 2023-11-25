@@ -77,7 +77,7 @@ public class GameController1 implements Initializable, Runnable{
         long currenTime;
         long timer=0;
         int drawCount=0;
-
+        //hola
         while (gThread!=null){
             currenTime=System.nanoTime();
             delta+=(currenTime-lastTime)/interval;
