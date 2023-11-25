@@ -49,7 +49,12 @@ public class Player extends Entity {
     public void setNameNenufar(String nameNenufar) {
         this.nameNenufar = nameNenufar;
     }
-
+    /**
+     * Private constructor for the Player class.
+     *
+     * @param gC   The GameController1 instance.
+     * @param keyH The KeyHandler instance.
+     */
     private Player(GameController1 gC, KeyHandler keyH) {
         this.gC = gC;
         this.keyH = keyH;
@@ -62,7 +67,13 @@ public class Player extends Entity {
         coliArea.setWidth(30);
         coliArea.setHeight(32);
     }
-
+    /**
+     * Gets an instance of Player using the Singleton pattern.
+     *
+     * @param gC   The GameController1 instance.
+     * @param keyH The KeyHandler instance.
+     * @return The Player instance.
+     */
     public static Player PlayerGetInstance(GameController1 gC,KeyHandler keyH){
         if(player==null){
             player=new Player(gC,keyH);
@@ -71,21 +82,29 @@ public class Player extends Entity {
         }
         return player;
     }
-
+    /**
+     * Initializes the list of player images.
+     */
     private void initializeImagesList() {
         imagesList = new ArrayList<>();
         imagesList.add(lector.readImageCP(1));  // Images for "right"
         imagesList.add(lector.readImageCP(3));//Images icons
         imagesList.add(lector.readImageCP(4)); //Images energy
     }
-
+    /**
+     * Sets default values for the player.
+     */
     public void setDefaultValues() {
         worldX = 51;
         worldY = 28;
         speed = 4;
         direction = "down";
     }
-
+    /**
+     * Draws the player on the graphics context.
+     *
+     * @param g The GraphicsContext for drawing.
+     */
     public void draw(GraphicsContext g) {
         g.drawImage(imagesList.get(0).get(0), worldX, worldY, tamañoP, tamañoP);
         int x=15;

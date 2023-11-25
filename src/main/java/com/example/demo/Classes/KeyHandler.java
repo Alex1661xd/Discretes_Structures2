@@ -12,7 +12,9 @@ public class KeyHandler {
         this.gc = gc;
         initializeKeyHandlers();
     }
-
+    /**
+     * Initializes the key handlers for the GameController1 instance.
+     */
     private void initializeKeyHandlers() {
         gc.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
             if (keyEvent.getCode() == KeyCode.UP||keyEvent.getCode() == KeyCode.W) {
