@@ -13,7 +13,11 @@ public class Graph2<V, T> {
         vertices = new ArrayList<>();
         adjacencyMatrix = new Edge[0][0]; // Cambio de int[0][0] a Edge[0][0]
     }
-
+    /**
+     * Adds a vertex to the graph if it does not already exist.
+     *
+     * @param vertice The vertex to be added.
+     */
     public void agregarVertice(V vertice) {
         if (!vertexIndexMap.containsKey(vertice)) {
             int newIndex = vertices.size();
@@ -22,7 +26,13 @@ public class Graph2<V, T> {
             actualizarMatriz();
         }
     }
-
+    /**
+     * Adds an edge between two vertices with a specified weight.
+     *
+     * @param v    The source vertex.
+     * @param w    The destination vertex.
+     * @param peso The weight of the edge.
+     */
     public void agregarArista(V v, V w, T peso) {
         if (vertexIndexMap.containsKey(v) && vertexIndexMap.containsKey(w)) {
             int indexV = vertexIndexMap.get(v);
@@ -35,6 +45,9 @@ public class Graph2<V, T> {
         }
     }
 
+    /**
+     * Prints the graph, displaying the vertices and edges along with their weights.
+     */
     public void imprimirGrafo() {
         for (int i = 0; i < vertices.size(); i++) {
             for (int j = 0; j < vertices.size(); j++) {
@@ -48,7 +61,13 @@ public class Graph2<V, T> {
             }
         }
     }
-
+    /**
+     * Connects vertices randomly in the graph with specified constraints.
+     *
+     * @param numVertices The number of vertices in the graph.
+     * @param maxAristas  The maximum number of edges for each vertex.
+     * @param maxPeso     The maximum weight for the edges.
+     */
     public void conectarAleatoriamente(int numVertices, int maxAristas, int maxPeso) {
         Random random = new Random();
 
@@ -70,7 +89,13 @@ public class Graph2<V, T> {
             }
         }
     }
-
+    /**
+     * Checks if an adjacency exists between two vertices.
+     *
+     * @param v The source vertex.
+     * @param w The destination vertex.
+     * @return True if an adjacency exists, false otherwise.
+     */
     private boolean adyacenciaExistente(V v, V w) {
         Integer indexV = vertexIndexMap.get(v);
         Integer indexW = vertexIndexMap.get(w);
@@ -79,14 +104,25 @@ public class Graph2<V, T> {
         return indexV != null && indexW != null && adjacencyMatrix[indexV][indexW] != null;
     }
 
-
+    /**
+     * Performs Depth-First Search (DFS) and returns a list of vertices in DFS order.
+     *
+     * @param inicio The starting vertex for DFS.
+     * @return A list of vertices in DFS order.
+     */
     public List<String> dfsConVecinos(V inicio) {
         boolean[] visitados = new boolean[vertices.size()];
         List<String> result = new ArrayList<>();
         dfsRecursivoConVecinos(vertexIndexMap.get(inicio), visitados, result);
         return result;
     }
-
+    /**
+     * Recursive helper method for DFS traversal.
+     *
+     * @param start   The index of the starting vertex.
+     * @param visited Array to track visited vertices.
+     * @param result  The result list to store vertices in DFS order.
+     */
     private void dfsRecursivoConVecinos(int start, boolean[] visited, List<String> result) {
         result.add(vertices.get(start).toString());
         visited[start] = true;
@@ -100,7 +136,13 @@ public class Graph2<V, T> {
         }
     }
 
-
+    /**
+     * Applies Dijkstra's algorithm to find the shortest path from the start vertex to the destination vertex.
+     *
+     * @param inicio   The starting vertex.
+     * @param destino  The destination vertex.
+     * @return The minimum distance between the start and destination vertices.
+     */
     public int dijkstra(V inicio, V destino) {
         int start = vertexIndexMap.get(inicio);
         int end = vertexIndexMap.get(destino);
@@ -133,7 +175,9 @@ public class Graph2<V, T> {
 
         return distancias.getOrDefault(end, -1);
     }
-
+    /**
+     * Updates the adjacency matrix to match the current vertices in the graph.
+     */
     private void actualizarMatriz() {
         int newSize = vertices.size();
         Edge<V, T>[][] nuevaMatriz = new Edge[newSize][newSize];

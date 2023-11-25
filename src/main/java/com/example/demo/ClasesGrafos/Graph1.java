@@ -11,14 +11,28 @@ public class Graph1<V, T> {
         adj = new HashMap<>();
     }
 
+    /**
+     * Adds a vertex to the graph.
+     *
+     * @param vertice The vertex to be added.
+     */
     public void agregarVertice(V vertice) {
         adj.put(vertice, new LinkedList<>());
     }
-
+    /**
+     * Adds an edge between two vertices with a specified weight.
+     *
+     * @param v    The source vertex.
+     * @param w    The destination vertex.
+     * @param peso The weight of the edge.
+     */
     public void agregarArista(V v, V w, T peso) {
         adj.computeIfAbsent(v, k -> new LinkedList<>()).add(new Edge<>(w, peso));
     }
 
+    /**
+     * Prints the graph, displaying the vertices and edges along with their weights.
+     */
     public void imprimirGrafo() {
         for (V origen : adj.keySet()) {
             for (Edge<V, T> arista : adj.get(origen)) {
@@ -28,7 +42,13 @@ public class Graph1<V, T> {
             }
         }
     }
-
+    /**
+     * Connects vertices randomly in the graph with specified constraints.
+     *
+     * @param numVertices The number of vertices in the graph.
+     * @param maxAristas  The maximum number of edges for each vertex.
+     * @param maxPeso     The maximum weight for the edges.
+     */
     public void conectarAleatoriamente(int numVertices, int maxAristas, int maxPeso) {
         Random random = new Random();
 
@@ -51,7 +71,12 @@ public class Graph1<V, T> {
             }
         }
     }
-
+    /**
+     * Performs Breadth-First Search (BFS) to obtain neighbors of a vertex.
+     *
+     * @param inicio The starting vertex for BFS.
+     * @return A list of vertices representing the neighbors in BFS order.
+     */
     public List<V> obtenerVecinosBFS(V inicio) {
         List<V> vecinos = new ArrayList<>();
         Set<V> visitados = new HashSet<>();
@@ -76,7 +101,13 @@ public class Graph1<V, T> {
 
         return vecinos;
     }
-
+    /**
+     * Applies Dijkstra's algorithm to find the shortest path from the start vertex to the destination vertex.
+     *
+     * @param inicio   The starting vertex.
+     * @param destino  The destination vertex.
+     * @return The minimum distance between the start and destination vertices.
+     */
     public int dijkstra(V inicio, V destino) {
         Map<V, Integer> distancias = new HashMap<>();
         PriorityQueue<Pair<Integer, V>> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(Pair::getKey));
