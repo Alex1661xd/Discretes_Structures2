@@ -24,7 +24,12 @@ public class SuperObject {
     private int characterCounter = 0;
     private int animationSpeed1 = 8;
     private int animationSpeed2=0;
-
+    /**
+     * Draws game objects using the provided GraphicsContext and GameController1 instance.
+     *
+     * @param graphic The GraphicsContext for drawing.
+     * @param gc      The GameController1 instance.
+     */
     public void drawObjects(GraphicsContext graphic, GameController1 gc){
         animationSpeed2++;
         if(animationSpeed2>=3){
@@ -37,7 +42,12 @@ public class SuperObject {
         }
         graphic.drawImage(enemy.get(characterCounter),worldX,worldY,48,48);
     }
-
+    /**
+     * Draws the corona object on a randomly selected Nenufar.
+     *
+     * @param graphic The GraphicsContext for drawing.
+     * @param gc      The GameController1 instance.
+     */
     public void drawCorona(GraphicsContext graphic, GameController1 gc){
         Random random=new Random();
         if(flag){

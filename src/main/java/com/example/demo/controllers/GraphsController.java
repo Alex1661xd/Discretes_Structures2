@@ -18,20 +18,35 @@ public class GraphsController {
         random = new Random();
         grafo2=new Graph2<>();
     }
-
+    /**
+     * Gets an instance of GraphsController using the Singleton pattern.
+     *
+     * @return The GraphsController instance.
+     */
     public static GraphsController getInstance() {
         if (graphCont == null) graphCont = new GraphsController();
         return graphCont;
     }
-
+    /**
+     * Gets the type of the graph.
+     *
+     * @return The type of the graph.
+     */
     public int getTypeGraph() {
         return typeGraph;
     }
 
+    /**
+     * Sets the type of the graph.
+     *
+     * @param typeGraph The type of the graph.
+     */
     public void setTypeGraph(int typeGraph) {
         this.typeGraph = typeGraph;
     }
-
+    /**
+     * Adds a graph based on the selected type.
+     */
     public void addGraph() {
         int typeGraph = getTypeGraph();
         if (typeGraph == 1) {
@@ -40,17 +55,28 @@ public class GraphsController {
             addGraph2();
         }
     }
-
+    /**
+     * Adds a graph of type 1.
+     */
     private void addGraph1() {
         grafo1.conectarAleatoriamente(51,3,4);
         //grafo1.imprimirGrafo();
     }
+    /**
+     * Adds a graph of type 2.
+     */
     private void addGraph2() {
        grafo2.conectarAleatoriamente(51,3,4);
        grafo2.imprimirGrafo();System.out.println("Grafo2");
     }
 
-
+    /**
+     * Shows the shortest distances between two vertices.
+     *
+     * @param VInicio The starting vertex.
+     * @param VFinal  The ending vertex.
+     * @return The shortest distance.
+     */
     public int showDistanciasCortas(String VInicio, String VFinal) {
         int msg = -1;
         if(typeGraph==1){
@@ -61,7 +87,12 @@ public class GraphsController {
         }
         return msg;
     }
-
+    /**
+     * Shows the connections of a vertex.
+     *
+     * @param vertice The vertex to show connections for.
+     * @return A string representing the connections.
+     */
     public String showConnections(String vertice) {
         StringBuilder msg = new StringBuilder();
         List<String> conexiones=null;
@@ -81,7 +112,12 @@ public class GraphsController {
         }
         return msg.toString();
     }
-
+    /**
+     * Gets the connections using BFS for graph type 1.
+     *
+     * @param vertice The vertex to find connections for.
+     * @return A list of connections.
+     */
     private List<String> getConnectionsBFS(String vertice) {
         List<String> conexiones = new ArrayList<>();
         List<String> vecinos = grafo1.obtenerVecinosBFS(vertice);

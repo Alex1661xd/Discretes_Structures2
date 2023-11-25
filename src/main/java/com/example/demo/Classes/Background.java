@@ -24,7 +24,12 @@ public class Background {
     int contador=0;
 
     KeyHandler keyH;
-
+    /**
+     * Private constructor for the Background class.
+     *
+     * @param gp   The GameController1 instance.
+     * @param keyH The KeyHandler instance.
+     */
     private Background(GameController1 gp, KeyHandler keyH) {
         nenufares=new ArrayList<>();
         this.keyH=keyH;
@@ -36,7 +41,13 @@ public class Background {
         getResources();
         loadMap();
     }
-
+    /**
+     * Gets an instance of Background using the Singleton pattern.
+     *
+     * @param gp   The GameController1 instance.
+     * @param keyH The KeyHandler instance.
+     * @return The Background instance.
+     */
     public static Background BackgroundGetInstance(GameController1 gp,KeyHandler keyH){
         if(background==null){
             background=new Background(gp,keyH);
@@ -46,8 +57,9 @@ public class Background {
         return background;
     }
 
-
-
+    /**
+     * Loads resources, including images for the background tiles.
+     */
     public void getResources(){
         ArrayList<Image>iconosSen= lector.readImageBackground(5);
         for (int i = 0; i < iconosSen.size(); i++) {
@@ -58,7 +70,9 @@ public class Background {
             }
         }
     }
-
+    /**
+     * Loads the map from a file and initializes the mapBackNum array.
+     */
     public void loadMap() {
         try {
             File projectDir = new File(System.getProperty("user.dir"));
@@ -97,7 +111,11 @@ public class Background {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Paints the background using the loaded map and tiles.
+     *
+     * @param g The GraphicsContext for painting.
+     */
     public void paint(GraphicsContext g) {
         int col = 0;
         int row = 0;
@@ -125,11 +143,20 @@ public class Background {
         }
     }
 
-
+    /**
+     * Gets the list of combinations.
+     *
+     * @return The list of combinations.
+     */
     public ArrayList<String> getCombinaciones() {
         return combinaciones;
     }
-
+    /**
+     * Searches for a Nenufar with the given name.
+     *
+     * @param name The name of the Nenufar to search for.
+     * @return The Nenufar with the given name, or null if not found.
+     */
     public Nenufar searchTile(String name){
         for (int i = 0; i < nenufares.size(); i++) {
             if(nenufares.get(i).name.equals(name)){
@@ -139,7 +166,11 @@ public class Background {
         }
         return null;
     }
-
+    /**
+     * Searches for a Nenufar with the corona property.
+     *
+     * @return The name of the Nenufar with the corona property, or null if not found.
+     */
     public String searchTileCorona(){
         for (int i = 0; i < nenufares.size(); i++) {
             if(nenufares.get(i).corona){
@@ -149,6 +180,11 @@ public class Background {
         }
         return null;
     }
+    /**
+     * Gets the list of background tiles.
+     *
+     * @return The list of background tiles.
+     */
 
     public ArrayList<BackgroundEn> getTile() {
         return tile;
