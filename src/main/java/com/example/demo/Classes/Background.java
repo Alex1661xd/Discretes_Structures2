@@ -140,6 +140,16 @@ public class Background {
         return null;
     }
 
+    public String searchTileCorona(){
+        for (int i = 0; i < nenufares.size(); i++) {
+            if(nenufares.get(i).corona){
+                return nenufares.get(i).name;
+
+            }
+        }
+        return null;
+    }
+
     public ArrayList<BackgroundEn> getTile() {
         return tile;
     }
