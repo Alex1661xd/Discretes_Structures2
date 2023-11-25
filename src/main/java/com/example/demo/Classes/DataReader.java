@@ -73,6 +73,8 @@ public class DataReader {
             caracterP = new File(dataFolder + "/desencriptados/caracterPrincipal/corriendoI");
         }else if (option == 3) {
             caracterP = new File(dataFolder + "/desencriptados/iconos");
+        }else if(option==4){
+            caracterP = new File(dataFolder + "/desencriptados/energia");
         }
             File folder = caracterP;
             File[] pngFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".png"));
@@ -132,6 +134,26 @@ public class DataReader {
             }
         }
         return imageList.get(option);
+    }
+
+    public Image imageGameOver(int option){
+        iconos=new File(dataFolder + "/maps");
+        File folder=iconos;
+        File[] pngFiles =null;
+        if(option==0){
+            pngFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".jpg"));
+        }else if(option==1){
+            pngFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".jpeg"));
+        }
+        ArrayList<Image> imageList = new ArrayList<>();
+
+        if (pngFiles != null) {
+            for (File pngFile : pngFiles) {
+                Image image = new Image(pngFile.toURI().toString());
+                imageList.add(image);
+            }
+        }
+        return imageList.get(0);
     }
 
 }

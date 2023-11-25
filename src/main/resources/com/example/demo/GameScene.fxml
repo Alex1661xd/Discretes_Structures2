@@ -8,4 +8,5 @@
 
     <Canvas fx:id="canvas" height="576" width="768" />
    <Button layoutX="338.0" layoutY="534.0" mnemonicParsing="false" onAction="#OpenWindow" text="Change position" />
+   <Label fx:id="label" layoutX="210.0" layoutY="538.0" text="Label" />
 </Pane>

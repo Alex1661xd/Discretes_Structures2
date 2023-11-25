@@ -38,6 +38,10 @@ public class SelectionGraphController implements Initializable {
         System.out.println("Vidas:"+Player.PlayerGetInstance(null,null).getVidas());
         System.out.println("Energia:"+Player.PlayerGetInstance(null,null).getEnergia());
         Image imagen=null;
+        if(Player.PlayerGetInstance(null,null).getEnergia()==0){
+            Player.PlayerGetInstance(null,null).setVidas(Player.PlayerGetInstance(null,null).getVidas()-1);
+            Player.PlayerGetInstance(null,null).setEnergia(5);
+        }
         if(nenufar.enemy){
             imagen=reader.imageNenufar(1);
             Player.PlayerGetInstance(null,null).setVidas(Player.PlayerGetInstance(null,null).getVidas()-1);
@@ -65,7 +69,9 @@ public class SelectionGraphController implements Initializable {
             int dOpcion2=GraphsController.getInstance().showDistanciasCortas(Player.PlayerGetInstance(null,null).getNameNenufar(),N2.getText());
             if(descogida>dOpcion2){
                 Player.PlayerGetInstance(null,null).setEnergia(Player.PlayerGetInstance(null,null).getEnergia()-1);
+
             }
+
             System.out.println("Escodiga: "+descogida);
             System.out.println("Otra:"+dOpcion2);
             Player.PlayerGetInstance(null,null).setNameNenufar(nenufar.name);

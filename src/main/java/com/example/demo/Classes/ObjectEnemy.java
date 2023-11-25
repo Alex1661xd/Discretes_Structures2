@@ -6,5 +6,6 @@ public class ObjectEnemy extends SuperObject{
         reader=new DataReader();
         name="Enemy";
         enemy=reader.readImagenemy();
+        corona=reader.imageNenufar(2);
     }
 }
