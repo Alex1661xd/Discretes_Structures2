@@ -12,6 +12,8 @@ public class BackgroundEn {
 
     private boolean isEnemyPosition=false;
 
+    private boolean isEnd=false;
+
     public boolean isCollision() {
         return collision;
     }

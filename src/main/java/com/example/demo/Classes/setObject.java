@@ -46,5 +46,10 @@ public class setObject {
         gc.object[8].worldX=627;
         gc.object[8].worldY=24;
 
+        gc.object[9]=new ObjectEnemy();
+        gc.object[9].name="corona";
+        gc.object[9].worldX=100;
+        gc.object[9].worldY=100;
+
     }
 }

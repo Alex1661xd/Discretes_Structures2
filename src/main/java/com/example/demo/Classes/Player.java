@@ -75,7 +75,8 @@ public class Player extends Entity {
     private void initializeImagesList() {
         imagesList = new ArrayList<>();
         imagesList.add(lector.readImageCP(1));  // Images for "right"
-        imagesList.add(lector.readImageCP(3)); //Images icons
+        imagesList.add(lector.readImageCP(3));//Images icons
+        imagesList.add(lector.readImageCP(4)); //Images energy
     }
 
     public void setDefaultValues() {
@@ -93,6 +94,13 @@ public class Player extends Entity {
             g.drawImage(imagesList.get(1).get(0), x, y, 28, 28);
             x+=28;
         }
+
+        if(energia>0){
+            g.drawImage(imagesList.get(2).get(energia),700,520,60,60);
+        }
+
+
+
     }
 
 
