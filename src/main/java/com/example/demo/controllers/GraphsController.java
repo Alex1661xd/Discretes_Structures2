@@ -75,7 +75,7 @@ public class GraphsController {
 
         // Excluir el vértice de origen de la lista de conexiones
         if (conexiones.isEmpty()) {
-            msg.append("Ninguna conexión.");
+            msg.append("No connection.");
         } else {
             msg.append(String.join(", ", conexiones));
         }

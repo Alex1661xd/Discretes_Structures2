@@ -35,8 +35,8 @@ public class SelectionGraphController implements Initializable {
         reader=new DataReader();
         String nameNenufarActual=Player.PlayerGetInstance(null,null).getNameNenufar();
         Nenufar nenufar=Background.BackgroundGetInstance(null,null).searchTile(nameNenufarActual);
-        System.out.println("Vidas:"+Player.PlayerGetInstance(null,null).getVidas());
-        System.out.println("Energia:"+Player.PlayerGetInstance(null,null).getEnergia());
+        System.out.println("Lives:"+Player.PlayerGetInstance(null,null).getVidas());
+        System.out.println("Energy:"+Player.PlayerGetInstance(null,null).getEnergia());
         Image imagen=null;
         if(nenufar.enemy){
             imagen=reader.imageNenufar(1);
@@ -67,7 +67,7 @@ public class SelectionGraphController implements Initializable {
                 Player.PlayerGetInstance(null,null).setEnergia(Player.PlayerGetInstance(null,null).getEnergia()-1);
             }
             System.out.println("Escodiga: "+descogida);
-            System.out.println("Otra:"+dOpcion2);
+            System.out.println("Other:"+dOpcion2);
             Player.PlayerGetInstance(null,null).setNameNenufar(nenufar.name);
             int nenufarX=nenufar.getWorldX()+3;
             int nenufarY=nenufar.getWorldY()-20;
@@ -75,7 +75,7 @@ public class SelectionGraphController implements Initializable {
             Player.PlayerGetInstance(null,null).worldY=nenufarY;
             HelloApplication.hideWindow((Stage)options.getScene().getWindow());
         }else{
-            System.out.println("Ocurrio un error");
+            System.out.println("An error occurred");
         }
     }
 
@@ -88,7 +88,7 @@ public class SelectionGraphController implements Initializable {
                 Player.PlayerGetInstance(null,null).setEnergia(Player.PlayerGetInstance(null,null).getEnergia()-1);
             }
             System.out.println("Escodiga: "+descogida);
-            System.out.println("Otra:"+dOpcion2);
+            System.out.println("Other:"+dOpcion2);
             Player.PlayerGetInstance(null,null).setNameNenufar(nenufar.name);
             int nenufarX=nenufar.getWorldX()+3;
             int nenufarY=nenufar.getWorldY()-20;
@@ -96,7 +96,7 @@ public class SelectionGraphController implements Initializable {
             Player.PlayerGetInstance(null,null).worldY=nenufarY;
             HelloApplication.hideWindow((Stage)options.getScene().getWindow());
         }else{
-            System.out.println("Ocurrio un error");
+            System.out.println("An error occurred");
         }
     }
 }

@@ -42,7 +42,7 @@ public class FirstWindowController implements Initializable {
             gpController.addGraph();
             HelloApplication.showWindow("GameScene", null,768,576);
             HelloApplication.hideWindow((Stage)nickname.getScene().getWindow());
-        }else if(!Objects.equals(nicknameText, "")&&typeGraph.equals("2. Graph Warshall , DFS, Matriz")){
+        }else if(!Objects.equals(nicknameText, "")&&typeGraph.equals("2. Graph Dijkstra , DFS, Matriz")){
             gpController.setTypeGraph(2);
             gpController.addGraph();
             HelloApplication.showWindow("GameScene", null,768,576);
@@ -59,7 +59,7 @@ public class FirstWindowController implements Initializable {
         region.setStyle("-fx-background-color: #A0A0A0;");
         image.setImage(reader.imageFirstWindow());
         graph.getItems().add("1. Graph Dijkstra, BFS, Lista");
-        graph.getItems().add("2. Graph Warshall , DFS, Matriz");
+        graph.getItems().add("2. Graph Dijkstra , DFS, Matriz");
     }
 
 }
